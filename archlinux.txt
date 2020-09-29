@@ -1,0 +1,60 @@
+Archlinux
+- rolling release
+- community support
+- DIY
+
+#####INSTALLATION
+
+boot
+#fdisk -l
+#fdisk /dev/sda
+
+UEFI
+n
++512M
+type 1 (EFI SYSTEM)
+
+n
+whole
+type 83
+
+w
+
+#mkfs.fat -F32 /dev/sda1
+#mkfs.ext4 /dev/sda2
+
+
+Select repo
+#pacman -Syy (update repo)
+#pacman -S reflector (list fresh and fast mirror)
+#cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
+#reflector -c "IN" -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
+
+mount /dev/sda2 /mnt
+pacstrap /mnt base linux linux-firmware vim nano
+
+fstab file
+genfstab -U /mnt >> /mnt/etc/fstab
+
+chroot
+arch-chroot /mnt
+
+timedatectl list-timezones
+timedatectl set-timezone Asia/kolkata
+
+
+ vi /etc/locale.gen and uncomment en_IN.UTF-8
+locale-gen
+echo LANG=en_IN.UTF-8 > /etc/locale.conf
+export LANG=en_IN.UTF-8
+
+echo myarch > /etc/hostname
+nano /etc/hosts
+
+127.0.0.1	localhost
+::1		localhost
+127.0.1.1	myarch
+ 
+ 
+ 
+ 
