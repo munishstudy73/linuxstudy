@@ -78,5 +78,24 @@ Interactive shell access to container
 Managing Docker container
 #docker ps (running container)
 #docker ps -a (all active and inactive)
-#
+#docker ps -l  (latest)
 
+#docker [start/stop/rm] containerID/ContainerName
+# docker --name name1 --rm  (name to customise and rm to remove when stopped)
+
+#docker commit -m "ubuntu nodejs" -a "Munish" c3e9e2661d73 munishstudy73/ubuntunodejs:{tag}
+i.e. container_id repository/new_image_name
+
+
+DockerHub login
+#docker login -u {docker username}
+
+Rename image file to match docker hub
+docker tag sammy/ubuntu-nodejs docker-registry-username/ubuntu-nodejs
+
+Push image
+docker commit -m "ubuntu nodejs" -a "Munish" c3e9e2661d73 munishstudy73/ubuntunodejs
+
+
+#docker version
+#docker info
