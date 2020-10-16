@@ -1,0 +1,11 @@
+
+Q> using apt install getting error msg "No sandbox user '_apt' on the system, can not drop privileges"
+
+A> _apt user missing in ubuntu. Add user
+The user _apt is created by the postinst script of the apt package (/var/lib/dpkg/info/apt.postinst):
+
+ # add unprivileged user for the apt methods
+ adduser --force-badname --system --home /nonexistent  \
+     --no-create-home --quiet _apt || true
+
+It's the owner of /var/cache/apt/archives/partial and /var/lib/apt/lists/partial and used by APT to download packages, package list, and other things.
