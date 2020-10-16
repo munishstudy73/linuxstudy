@@ -1,0 +1,12 @@
+
+
+##########################
+Q1> Run script from URL directly in terminal
+
+#curl -s http://example.com/script.sh | bash
+
+-s means silent and don't display stats
+
+#wget -qO - http://example.com/script.sh | bash
+ -qO - 
+ -O save content to file and then direct that to /dev/stdout to execute
