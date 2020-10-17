@@ -99,3 +99,25 @@ docker commit -m "ubuntu nodejs" -a "Munish" c3e9e2661d73 munishstudy73/ubuntuno
 
 #docker version
 #docker info
+
+Running jenkins
+# docker pull jenkins/jenkins
+#docker run -d -p 8080:8080 -p 50000:50000 jenkins/jenkins:latest
+-d daemon mode
+-p port redirect -p [host_ip]:[host_port]:[container_port]
+
+> accesing shell in running docker
+#docker exec -it <container name> /bin/bash 
+#docker exec -it <container name> <command>
+
+>to attach terminal to container
+#docker attach container
+differnce between docker attach and docker exec is that when docker attach is closed, container closes which is not incase of exec
+
+> docker run command to build and run docker
+docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
+docker run [docker_image]
+
+
+
+
