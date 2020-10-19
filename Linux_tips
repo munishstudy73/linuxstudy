@@ -10,3 +10,14 @@ Q1> Run script from URL directly in terminal
 #wget -qO - http://example.com/script.sh | bash
  -qO - 
  -O save content to file and then direct that to /dev/stdout to execute
+ 
+ 
+###############################
+Q2> Keyless ssh to rsync remote folder
+source
+#ssh-keygen -q -P ""
+#cat /root/.ssh/id_rsa.pub
+
+copy to remote system authorised_key
+
+/usr/bin/rsync -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"   -axvzKHS   --exclude 'nimda' --progress /home/*  192.168.10.236:/home/ 
