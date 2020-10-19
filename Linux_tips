@@ -21,3 +21,17 @@ source
 copy to remote system authorised_key
 
 /usr/bin/rsync -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"   -axvzKHS   --exclude 'nimda' --progress /home/*  192.168.10.236:/home/ 
+
+
+############################
+Q3> kill zombie process
+search for zombie process
+#ps aux | egrep "Z|defunct"
+find the parent process
+#ps -o ppid= <Child PID>
+send sigchld process to parent
+$ kill -s SIGCHLD <Parent PID>
+or kill the process
+$ kill -9 <Parent PID>
+or restart the machine
+
