@@ -1,0 +1,40 @@
+
+Docker Install
+
+#nano /etc/selinux/config
+SELINUX=disabled
+
+#yum erase podman buildah (conflict with docker)
+#dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+
+#systemctl start docker
+#systemctl enable docker
+
+#docker -v
+
+#docker pull nginx
+#docker run --name docker-nginx -p 80:80 -d nginx
+#docker ps
+#docker exec -it docker-nginx /bin/bash
+#exit
+
+#docker pull redis
+#docker run --name docker-redis -d redis
+#docker exec -it docker-redis /bin/bash
+#redis-cli 
+#exit
+#exit
+
+docker pull mongo
+docker run --name docker-mongo -p 27017:27017 -d mongo
+docker ps
+docker exec -it docker-mongo /bin/bash
+exit
+
+docker pull alpine
+docker run --name docker-alpine -dit alpine sh
+docker ps
+docker exec -it docker-alpine sh
+/ # cat /etc/os-release
+
+

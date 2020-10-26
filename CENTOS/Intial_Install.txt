@@ -1,0 +1,43 @@
+
+
+Centos 8 New Installation
+
+>minimal
+
+1> Set hostname and Ip address
+#nmtui
+#nmtui-hostname
+#nmtui-edit
+#nmtui-connect
+
+check network
+# ethtool enp0s3
+# mii-tool enp0s3
+
+listening ports
+# netstat -tulpn
+# ss -tulpn
+# 
+
+add users
+#useradd ravisaive
+# passwd ravisaive
+# usermod -aG wheel ravisaive
+
+add ps tools
+#pstree -p
+
+check services running at startup
+#systemctl list-units
+## systemctl list-unit-files -t service
+
+
+2> centos 8 update
+# dnf check-update
+# dnf update
+#dnf clean all
+
+3> install program
+dnf install nano vim wget curl net-tools lsof bash-completion
+
+4>network 
