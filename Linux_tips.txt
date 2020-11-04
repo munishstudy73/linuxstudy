@@ -39,5 +39,8 @@ or restart the machine
 
 Q4> ssh keyless login
 
+#ssh-keygen
+default key is 3072-bit RSA key pair 
+#ssh-keygen -b 4096
 
 
