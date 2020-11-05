@@ -1,0 +1,10 @@
+
+apt install snapd
+snap install netbeans --classic
+snap install postman
+snap install sublime-text --classic
+snap install code --classic
+snap install insomia
+snap install dbeaver-ce
+snap install eclipse --classic
+snap install brackets --classic
