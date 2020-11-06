@@ -1,0 +1,17 @@
+
+https://www.mysqltutorial.org/
+
+1> Load sample database
+
+#mysql -u root -p
+mysql> source c:\temp\mysqlsampledatabase.sql
+
+or via adminer.php import data
+
+
+2> SELECT query
+
+SELECT select_list
+FROM table_name;
+
+ SELECT lastname FROM employees;
