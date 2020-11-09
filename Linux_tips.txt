@@ -37,10 +37,10 @@ or restart the machine
 
 ###########################
 
-Q4> ssh keyless login
+Q4> List of users in samba
 
-#ssh-keygen
-default key is 3072-bit RSA key pair 
-#ssh-keygen -b 4096
+pdbedit -L -v
+-L list all users
+-v verbose
 
 
