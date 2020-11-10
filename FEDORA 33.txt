@@ -68,12 +68,24 @@ user fedora 32
 #dnf install docker-ce docker-ce-cli containerd.io
 
 
+ 
+Temp fix:
+sudo mkdir /sys/fs/cgroup/systemd
+sudo mount -t cgroup -o none,name=systemd cgroup /sys/fs/cgroup/systemd
+
+Bad gateway
+* firewall-cmd --permanent --zone=trusted --add-interface=aa-acXXXXXXffXc
+* firewall-cmd --reload
+
 
 
 Q6> visual code install
 #flatpak install https://flathub.org/repo/appstream/com.visualstudio.code.flatpakref
 #flatpak uninstall com.visualstudio.code
+#flatpak uninstall --unused
 
+
+Q
 
 
 
