@@ -1,0 +1,79 @@
+FEDORA 33
+
+
+
+Q1> install sublime-text
+#sudo rpm -v --import https://download.sublimetext.com/sublimehq-rpm-pub.gpg
+#sudo dnf config-manager --add-repo https://download.sublimetext.com/rpm/stable/x86_64/sublime-text.repo
+#sudo dnf install sublime-text
+
+
+Q2> anydesk install
+
+#sudo tee /etc/yum.repos.d/AnyDesk-Fedora.repo <<EOF
+[anydesk]
+name=AnyDesk Fedora - stable
+baseurl=http://rpm.anydesk.com/fedora/x86_64/
+gpgcheck=0
+repo_gpgcheck=0
+gpgkey=https://keys.anydesk.com/repos/RPM-GPG-KEY
+EOF
+
+#sudo dnf makecache
+
+Requires: libpangox-1.0.so.0
+You could try using –skip-broken to work around the problem
+First, install pangox-compat from fedora 32 release repo:
+#sudo dnf --releasever=32  install pangox-compat.x86_64
+#sudo dnf install anydesk
+
+
+
+
+
+Q3>opera install
+#cat << EOF > /etc/yum.repos.d/opera.repo
+[opera]
+name=Opera packages
+type=rpm-md
+baseurl=https://rpm.opera.com/rpm
+gpgcheck=1
+gpgkey=https://rpm.opera.com/rpmrepo.key
+enabled=1
+EOF
+
+dnf install opera-stable
+
+
+
+Q4> Post installation
+
+
+
+
+
+
+Q5> Docker install
+
+udo dnf -y install dnf-plugins-core
+
+$ sudo dnf config-manager     --add-repo \
+    https://download.docker.com/linux/fedora/docker-ce.repo
+
+user fedora 32 
+#perl -p -i -e 's/\$releasever/32/g' /etc/yum.repos.d/docker-ce.repo
+
+
+#sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+#dnf install docker-ce docker-ce-cli containerd.io
+
+
+
+
+Q6> visual code install
+#flatpak install https://flathub.org/repo/appstream/com.visualstudio.code.flatpakref
+#flatpak uninstall com.visualstudio.code
+
+
+
+
