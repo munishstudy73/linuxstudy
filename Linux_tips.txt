@@ -44,3 +44,17 @@ pdbedit -L -v
 -v verbose
 
 
+##############
+
+blk_update_request: I/O error, dev fd0, sector 0
+sudo rmmod floppy
+echo "blacklist floppy" | sudo tee /etc/modprobe.d/blacklist-floppy.conf
+sudo dpkg-reconfigure initramfs-tools
+
+
+#########
+
+btrfs device add -f /dev/sdb2 /
+$ btrfs fi show /
+$ btrfs balance start -v -mconvert=raid1 -dconvert=raid1 /
+$ btrfs fi usage /
