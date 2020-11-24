@@ -1,0 +1,88 @@
+
+
+The LXD container system is supported and created by the Ubuntu team. It provides a 25-30% faster performance than Vmware ESX. 10 times the density with zero latency. One can move Linux VMs straight to containers using LXD without modifying the apps or administration processes. You can run CentOS, Arch Linux, Fedora Linux, OpenSUSE, Gentoo, Ubuntu, Debian and many other Linux distros in containers.
+
+
+LXD is a container experience providing a ReST API to manage LXC containers. One can do the following things with LXD:
+
+    Unprivileged containers (secure by design)
+    Scalable
+    Live migration
+    Advanced resource control for CPU, memory, disk/network I/O, kernel modules and more)
+    Hardware passthrough support for GPU, USB, NIC, disks and more
+    Run containers
+    Update containers
+    Clustering support
+    Ease of management
+    Install different Linux distro inside containers
+    Manage container resources, like storage volumes, map directories, memory/disk I/O restrictions, networking and more
+
+
+Ubuntu 20.04
+
+#sudo snap install lxd --channel=4.0/stable
+#sudo adduser {USERName} lxd
+logout of shell or use following command
+#newgrp lxd
+
+root@devwks10232:/var/lib/snapd# lxd init
+Would you like to use LXD clustering? (yes/no) [default=no]:
+Do you want to configure a new storage pool? (yes/no) [default=yes]:
+Name of the new storage pool [default=default]: lxdpool01
+Name of the storage backend to use (btrfs, dir, lvm, zfs, ceph) [default=zfs]:
+Would you like to create a new zfs dataset under rpool/lxd? (yes/no) [default=yes]:
+Would you like to connect to a MAAS server? (yes/no) [default=no]:
+Would you like to create a new local network bridge? (yes/no) [default=yes]:
+What should the new bridge be called? [default=lxdbr0]:
+What IPv4 address should be used? (CIDR subnet notation, “auto” or “none”) [default=auto]:
+What IPv6 address should be used? (CIDR subnet notation, “auto” or “none”) [default=auto]: none
+Would you like LXD to be available over the network? (yes/no) [default=no]: yes
+Invalid input, try again.
+
+Would you like LXD to be available over the network? (yes/no) [default=no]: yes
+Address to bind LXD to (not including port) [default=all]:
+Port to bind LXD to [default=8443]:
+Trust password for new clients:
+Again:
+Would you like stale cached images to be updated automatically? (yes/no) [default=yes] yes
+Would you like a YAML "lxd init" preseed to be printed? (yes/no) [default=no]: yes
+config:
+  core.https_address: '[::]:8443'
+  core.trust_password: munish730
+networks:
+- config:
+    ipv4.address: auto
+    ipv6.address: none
+  description: ""
+  name: lxdbr0
+  type: ""
+  project: default
+storage_pools:
+- config:
+    source: rpool/lxd
+  description: ""
+  name: lxdpool01
+  driver: zfs
+profiles:
+- config: {}
+  description: ""
+  devices:
+    eth0:
+      name: eth0
+      network: lxdbr0
+      type: nic
+    root:
+      path: /
+      pool: lxdpool01
+      type: disk
+  name: default
+cluster: null
+
+
+
+
+Remove LXD
+#zfs list or 
+#zpool list
+#zfs destroy -r rpool/lxd
+#snap remove lxd
