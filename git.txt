@@ -1,0 +1,11 @@
+#git init     # for local repo
+#git init --bare  #for remote repo
+
+The repository on the server side is going to get commits via pull and push, and not by you editing files and then commiting them in the server machine, therefore it is a bare repository.
+
+git init creates a git repository from your current directory. It adds .git folder inside of it and makes it possible to start your revision history.
+
+git init --bare also creates a repository, but it does not have the working directory. This means that you can not edit files, commit your changes, add new files in that repository. 
+
+
+   git-----> git bare <----- git
