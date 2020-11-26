@@ -9,3 +9,17 @@ git init --bare also creates a repository, but it does not have the working dire
 
 
    git-----> git bare <----- git
+
+
+#  git config user.name "Joel Carnat"
+# git config user.email joel [at] carnat [dot] net
+# git config color.ui auto 
+
+
+git script to commit update
+
+# Git: add and commit changes
+cd /var/www/project-name && /usr/bin/git add --all && /usr/bin/git commit -m ""Commit: `date +\"%Y-%m-%d %H:%M:%S"`""
+ 
+# send data to Git server
+cd /var/www/project-name && /usr/bin/git push origin master
