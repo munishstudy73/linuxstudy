@@ -14,4 +14,27 @@ or via adminer.php import data
 SELECT select_list
 FROM table_name;
 
- SELECT lastname FROM employees;
+FROM -> SELECT
+
+#SELECT lastname FROM employees;
+#SELECT lastName,firstName,jobTitle FROM employees;
+#SELECT * from employees;
+
+3>ORDER BY
+SELECT 
+   select_list
+FROM 
+   table_name
+ORDER BY 
+   column1 [ASC|DESC], 
+   column2 [ASC|DESC],
+   ...;
+
+ FROM -> SELECT -> ORDER BY
+ 
+
+#SELECT contactLastname, contactFirstname FROM customers ORDER BY contactLastName;
+#SELECT contactLastname, contactFirstname FROM customers ORDER BY contactLastName DESC;
+#SELECT contactLastname, contactFirstname FROM customers ORDER BY contactLastName DESC, contactFirstName ASC;
+SELECT orderNumber, orderLineNumber, quantityOrdered * priceEach AS subtotal FROM orderdetails ORDER BY subtotal DESC;
+SELECT orderNumber, status FROM orders ORDER BY FIELD(status,'In Process','On Hold',   'Cancelled', 'Resolved', 'Disputed', 'Shipped');
