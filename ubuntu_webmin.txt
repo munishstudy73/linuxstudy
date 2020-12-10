@@ -1,0 +1,55 @@
+ webmin ubuntu 20.04
+ apt install nano wget gnupg
+ nano /etc/apt/sources.list
+ deb http://download.webmin.com/download/repository sarge contrib
+ 
+ wget -q -O- http://www.webmin.com/jcameron-key.asc | sudo apt-key add
+ apt update
+  apt install webmin
+ >>>  installs libauthen-pam-perl libgdbm-compat4 libgdbm6 libio-pty-perl libnet-ssleay-perl libperl5.30 perl perl-modules-5.30 perl-openssl-defaults unzip
+ 
+ https://localhost:10000/
+ root and password
+ 
+ 
+ Mariadb 10.3 (default)
+ apt install mariadb-server
+ mysql_secure_installation
+ 
+ 
+On Ubuntu systems running MariaDB 10.3, the root MariaDB user is set to authenticate using the unix_socket plugin by default rather than with a password. This allows for some greater security and usability in many cases, but it can also complicate things when you need to allow an external program (e.g., phpMyAdmin) administrative rights.
+Because the server uses the root account for tasks like log rotation and starting and stopping the server, it is best not to change the root account’s authentication details. Changing credentials in the /etc/mysql/debian.cnf configuration file may work initially, but package updates could potentially overwrite those changes. Instead of modifying the root account, the package maintainers recommend creating a separate administrative account for password-based access.
+To this end, we will create a new account called admin with the same capabilities as the root account, but configured for password authentication.
+
+webmin > unused module > mysql
+mysql configuration file : /etc/mysql/mariadb.conf.d/50-server.cnf
+#mariadb
+GRANT ALL ON *.* TO 'admin'@'localhost' IDENTIFIED BY 'password' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+exit
+
+echo "update mysql.user set plugin = 'mysql_native_password' where user='admin';" | mysql -u root # for access via external app
+
+systemctl status mariadb
+mysqladmin version
+mysqladmin -u admin -p version
+
+nano /etc/security/limits.conf
+mysql soft nofile 65535
+mysql hard nofile 65535
+
+mkdir /etc/systemd/system/mysql.service.d/
+nano /etc/systemd/system/mysql.service.d/limits.conf
+[Service]
+LimitNOFILE=infinity
+
+systemctl daemon-reload
+systemctl restart mariadb
+
+
+apt-get -y install apache2 apache2-doc apache2-utils libapache2-mod-php php7.4 php7.4-common php7.4-gd php7.4-mysql php7.4-imap phpmyadmin php7.4-cli php7.4-cgi libapache2-mod-fcgid apache2-suexec-pristine php-pear libruby libapache2-mod-python php7.4-curl php7.4-intl php7.4-pspell php7.4-sqlite3 php7.4-tidy php7.4-xmlrpc php7.4-xsl memcached php-memcache php-imagick php7.4-zip php7.4-mbstring php-soap php7.4-soap php7.4-opcache php-apcu php7.4-fpm libapache2-reload-perl
+
+a2enmod suexec rewrite ssl actions include cgi alias proxy_fcgi
+for webdav
+
+
