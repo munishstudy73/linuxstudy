@@ -1,0 +1,11 @@
+
+lxc config set core.https_address 192.168.10.217:8443
+ lxc remote add finallxd03 192.168.10.217
+  647  lxc remote list
+
+
+
+lxc stop nxdiallersec245db10183
+  682  lxc snapshot nxdiallersec245db10183 snap01
+  683  lxc copy nxdiallersec245db10183/snap01 finallxd03:nxdiallersec245db10183 --verbose
+  684  lxc list
