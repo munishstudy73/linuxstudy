@@ -1,0 +1,35 @@
+SELECT lastname, firstname, jobtitle, officeCode FROM employees WHERE jobtitle = 'Sales Rep' AND officeCode = 1;
+
+SELECT lastName, firstName, jobTitle, officeCode FROM employees WHERE jobtitle = 'Sales Rep' OR officeCode = 1 ORDER BY officeCode , jobTitle;
+
+SELECT firstName, lastName, officeCode FROM employees WHERE officeCode BETWEEN 1 AND 3 ORDER BY officeCode;
+SELECT firstName, lastName FROM employees WHERE lastName LIKE '%son'ORDER BY firstName;
+SELECT firstName, lastName, officeCode FROM employees WHERE officeCode IN (1 , 2, 3) ORDER BY officeCode;
+
+SELECT lastName, firstName, reportsTo FROM employees WHERE reportsTo IS NULL;
+
+
+SELECT lastname, firstname, officeCode FROM employees WHERE officecode > 5;
+
+
+SELECT lastname FROM employees ORDER BY lastname;
+SELECT DISTINCT lastname FROM employees ORDER BY lastname;
+SELECT DISTINCT state FROM customers;
+SELECT DISTINCT state, city FROM customers WHERE state IS NOT NULL ORDER BY state, city;
+SELECT state FROM customers GROUP BY state; same as SELECT DISTINCT state FROM customers;
+
+SELECT DISTINCT state FROM customers;
+
+SELECT DISTINCT state FROM customers ORDER BY state;
+
+
+
+SELECT customername, country, state FROM customers WHERE country = 'USA' AND state = 'CA';
+SELECT customername, country FROM customers WHERE country = 'USA' OR country = 'France';
+
+SELECT customername, country, creditLimit FROM customers WHERE(country = 'USA'OR country = 'France') AND creditlimit > 100000;
+
+SELECT officeCode, city, phone, country FROM offices WHERE country IN ('USA' , 'France');
+SELECT officeCode, city, phone FROM offices WHERE country = 'USA' OR country = 'France';
+
+SELECT officeCode, city, phone FROM offices WHERE country NOT IN ('USA' , 'France');

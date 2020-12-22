@@ -86,7 +86,132 @@ Distinct
 SELECT lastname FROM employees ORDER BY lastname;
 SELECT DISTINCT lastname FROM employees ORDER BY lastname;
 
+Will also show null
+SELECT DISTINCT state FROM customers;
 
+to remove null
+SELECT DISTINCT state, city FROM customers WHERE state IS NOT NULL ORDER BY state, city;
+
+without distinct , will have duplicate value
+SELECT state, city FROM customers WHERE state IS NOT NULL ORDER BY state, city;
+
+GROUP BY wuthout aggregate function works like distinct
+SELECT state FROM customers GROUP BY state;
+SELECT DISTINCT state FROM customers;
+
+the DISTINCT clause is a special case of the GROUP BY clause. The difference between DISTINCT clause and GROUP BY clause is that the GROUP BY clause sorts the result set whereas the DISTINCT clause does not.MySQL 8.0 removed the implicit sorting for the GROUP BY clause
+
+DISTINCT need to be sorted
+SELECT DISTINCT state FROM customers ORDER BY state;
+
+Use the DISTINCT clause with an aggregate function e.g., SUM, AVG, and COUNT, to remove duplicate rows before the aggregate functions are applied to the result set.
+SELECT COUNT(DISTINCT state) FROM customers WHERE country = 'USA';
+
+ use the DISTINCT clause with the LIMIT clause, MySQL immediately stops searching when it finds the number of unique rows specified in the LIMIT clause.
+ SELECT DISTINCT state FROM customers WHERE state IS NOT NULL LIMIT 5;
+
+
+AND operator
+boolean_expression_1 AND boolean_expression_2
+
+The following table illustrates the results of the AND operator when combining true, false, and null.
+	TRUE	FALSE	NULL
+TRUE	TRUE	FALSE	NULL
+FALSE	FALSE	FALSE	FALSE
+NULL	NULL	FALSE	NULL
+
+The AND operator is often used in the WHERE clause of the SELECT, UPDATE, DELETE statement to form a condition. The AND operator is also used in join conditions of the  INNER JOIN and  LEFT JOIN clauses.
+
+    Home
+    Start Here
+    Basics
+    Advanced
+        Stored Procedures
+        Triggers
+        Views
+        Indexes
+        MySQL Administration
+        Tips
+    Functions
+        Aggregate Functions
+        Comparison Functions
+        Date Functions
+        String Functions
+        Window Functions
+        Math Functions
+    API
+        PHP
+        Python
+        Perl
+        Node.js
+        JDBC
+    TryIt
+
+Home / Basic MySQL Tutorial / MySQL AND Operator
+MySQL AND Operator
+
+Summary: in this tutorial, you will learn how to the MySQL AND operator to combine multiple Boolean expressions to filter data.
+Introduction to MySQL AND operator
+
+The AND operator is a logical operator that combines two or more Boolean expressions and returns true only if both expressions evaluate to true. The AND operator returns false if one of the two expressions evaluate to false.
+
+Here is the syntax of the AND operator:
+
+boolean_expression_1 AND boolean_expression_2
+
+The following table illustrates the results of the AND operator when combining true, false, and null.
+	TRUE	FALSE	NULL
+TRUE	TRUE	FALSE	NULL
+FALSE	FALSE	FALSE	FALSE
+NULL	NULL	FALSE	NULL
+
+The AND operator is often used in the WHERE clause of the SELECT, UPDATE, DELETE statement to form a condition. The AND operator is also used in join conditions of the  INNER JOIN and  LEFT JOIN clauses.
+
+When evaluating an expression that has the AND operator, MySQL stops evaluating the remaining parts of the expression whenever it can determine the result. This function is called short-circuit evaluation.
+SELECT 1 = 0 AND 1 / 0 ;
+Note that in MySQL, zero is considered false and non-zero is treated as true. 1=0 will stop AND operator with false.
+
+SELECT customername, country, state FROM customers WHERE country = 'USA' AND state = 'CA';
+SELECT customername, country, state, creditlimit FROM customers WHERE country = 'USA'AND state = 'CA'AND creditlimit > 100000;
+
+
+OR OPERATOR
+boolean_expression_1 OR boolean_expression_2
+
+Both boolean_expression_1 and boolean_expression_2 are Boolean expressions that return true, false, or NULL.
+
+The following table shows the result of the OR operator.
+	TRUE	FALSE	NULL
+TRUE	TRUE	TRUE	TRUE
+FALSE	TRUE	FALSE	NULL
+NULL	TRUE	NULL	NULL
+
+short circuit
+SELECT 1 = 1 OR 1 / 0;
+
+more than one logical operator in an expression, MySQL always evaluates the OR operators after the AND operators.
+
+SELECT true OR false AND false;
+SELECT (true OR false) AND false;
+
+SELECT customername, country FROM customers WHERE country = 'USA' OR country = 'France';
+
+SELECT customername, country, creditLimit FROM customers WHERE(country = 'USA'OR country = 'France') AND creditlimit > 100000;
+
+IN OPERATOR
+SELECT 
+    column1,column2,...
+FROM
+    table_name
+WHERE 
+	(expr|column_1) IN ('value1','value2',...);
+
+SELECT officeCode, city, phone, country FROM offices WHERE country IN ('USA' , 'France');
+SELECT officeCode, city, phone FROM offices WHERE country = 'USA' OR country = 'France';
+
+OR statement increases so we use IN
+
+SELECT officeCode, city, phone FROM offices WHERE country NOT IN ('USA' , 'France');
 
 
 
