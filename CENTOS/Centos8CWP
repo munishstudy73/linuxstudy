@@ -1,0 +1,19 @@
+
+
+Centos 8 CWP
+
+#systemctl enable --now cockpit.socket
+#sudo dnf -y install epel-release dnf-utils  dnf-plugins-core
+#sudo dnf config-manager --enable PowerTools
+#sudo dnf -y install bash-completion vim curl wget unzip openssh-clients telnet net-tools sysstat nano
+sudo hostnamectl set-hostname mail.computingforgeeks.com --static
+sudo dnf -y install chrony
+sudo timedatectl set-timezone Asia/Kolkata
+sudo systemctl enable --now chronyd
+sudo chronyc sources
+timedatectl
+
+
+cd /usr/local/src
+wget http://centos-webpanel.com/cwp-el8-latest
+sh cwp-el8-latest -r yes --phpfpm 7.3 --softaculous yes --modsecurity yes
